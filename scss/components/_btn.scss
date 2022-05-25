@@ -5,3 +5,51 @@ button{
 button:hover{
     border: solid 2px $highligth;
 }
+button:active{
+    border: solid 2px $secondary-color;
+    background-color: lighten($primary-color, 30%);
+}
+
+//// BTN HEADER INDEX PROFIL ////
+.profil_btn{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    
+    button{
+        border-radius: 30px;
+        border: solid 2px $primary-color;
+        padding: 10%;
+    }
+    button:hover{
+    border: solid 2px $highligth;
+    }
+    button:active{
+        border: solid 2px $secondary-color;
+        background-color: lighten($primary-color, 30%);
+    }
+
+}
+//// POST FORM BTN ////
+.postForm_btn{
+    width: 20%;
+    padding: 2% 0%;
+    border-radius: 30px;
+}
+.postForm_btn:active{
+    .fa-paper-plane{
+        color: $secondary-color;
+    }
+}
+
+//// POST BTN ////
+.post_btn{
+    display: flex;
+    flex-flow: column nowrap;
+    width: 15%;
+    button{
+        margin: 5% 0%;
+        border-radius: 30px;
+        
+    }
+}

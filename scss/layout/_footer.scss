@@ -1,3 +1,31 @@
 footer{
-    background-color: lighten($primary-color, 10%);
+    background-color: $primary-color;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1% 0%;
+    border-top: solid 2px $highligth;
+    img{
+        margin-left: 40%;
+        width:20%;
+        padding: 1% 0%;
+    }
+    ul{
+        width: 20%;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        margin: 0%;
+        li{
+            padding: 2% 0%;
+            list-style: none;
+            a{
+                color: $secondary-color;
+            }
+            a:hover{
+                color: lighten($highligth, 30%);
+            }
+        }
+        
+    }
 } 

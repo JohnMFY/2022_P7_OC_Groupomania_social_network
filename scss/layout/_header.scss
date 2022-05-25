@@ -1,3 +1,33 @@
 header{
-    background-color: lighten($primary-color, 10%);
+    background-color: $primary-color;
+    border-bottom:solid 2px $highligth ;
+    display: flex;
+    justify-content: space-between;
+
+    h1{
+        display: flex;
+        justify-content:center;
+        margin: 0% 0% 0% 20% ;
+        img{
+            width: 90%;
+            margin: 5% 0%;
+        }    
+    }
+    .profil{
+        background-color: $secondary-color;
+        width: 10%;
+        margin-right: 2%;
+        padding: 1%;
+        border-radius: 20px;
+        display:flex;
+        justify-content: center;
+        flex-flow: column nowrap;
+        align-self: center;
+        border: solid 2px $highligth;
+
+        h4{
+            text-align: center;
+            margin: 5% auto;
+        }
+    }
 }
