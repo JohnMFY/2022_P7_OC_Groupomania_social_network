@@ -398,6 +398,36 @@ main {
   margin: 5% 33%;
 }
 
+.signupForm .loginMessage {
+  background-color: white;
+  color: black;
+  padding: 2%;
+  width: 90%;
+  margin: 3% 3%;
+  border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+
+.signupForm .loginMessage a {
+  font-weight: bold;
+  color: orangered;
+}
+
+.signupForm .loginMessage a:hover {
+  color: #2850a0;
+}
+
 .signupForm_input {
   margin: 5%;
   display: -webkit-box;
