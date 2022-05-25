@@ -1,0 +1,17 @@
+//// BODY ////
+body{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0%;
+    margin: 0%;
+}
+
+//// ANCHOR ////
+a{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    color: $highligth;
+}
