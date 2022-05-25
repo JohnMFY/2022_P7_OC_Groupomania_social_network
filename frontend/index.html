@@ -41,7 +41,7 @@
             <article class="post" v-for="post of posts" :key="post.id">
                 <div class="post_header">
                     <h4>{{post.user.userName}}</h4>
-                    <div class="post_btn">
+                    <div class="post_btn"><!-- v-if="user.id == post.userId" -->
                         <button class="edit"><i class="fa-solid fa-pencil"></i></button>
                         <button class="delete"><i class="fa-solid fa-xmark fa-lg"></i></button>
                     </div>
@@ -63,7 +63,7 @@
                     <p>{{post.commment.content}}</p>--> 
                     <h4>Username</h4>
                     <p> this is a comment</p>
-                    <div class="comment_btn">
+                    <div class="comment_btn"><!-- v-if="user.id == comment.userId" -->
                         <button class="edit"><i class="fa-solid fa-pencil"></i></button>
                         <button class="delete"><i class="fa-solid fa-xmark fa-lg"></i></button>
                     </div>        
@@ -95,16 +95,8 @@
         .then((json) => {this.posts = json})
         },
     };
-    const form ={
-        dataForm(){
-            return {
-                name:'',
-                city:'',
-            }
-        },
-    }
 
-    const app = Vue.createApp(apiData, form).mount('#app')
+    const app = Vue.createApp(apiData).mount('#app')
 </script>
 </body>
 </html>

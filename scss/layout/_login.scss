@@ -1,0 +1,21 @@
+.loginForm{
+    background: $primary-color;
+    color: white;
+    padding: 5px;
+    border-radius: 20px;
+    border: solid 2px $highligth;
+    width: 33%;
+    margin: 5% 33%;
+    
+    &_input{
+        margin: 5%;
+        display: flex;
+        justify-content: center;
+        flex-flow: column nowrap;
+        text-align: center;
+        label{
+            width: 100%;
+            padding-bottom: 2%;
+        }
+    }
+}

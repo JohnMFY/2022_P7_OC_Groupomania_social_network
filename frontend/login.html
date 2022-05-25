@@ -14,10 +14,32 @@
     </header>
 
     <main>
+        <h2>Login</h2>
+        <form id="login" class="loginForm">
+
+            <div class="loginForm_input">
+              <label for="userName">User name : </label>
+              <input type="text" name="userName" id="name" required minlength="3" maxlength="20">
+            </div>
+      
+            <div class="loginForm_input">
+              <label for="password">Password : </label>
+              <input type="password" name="password" id="password" required minlength="8" maxlength="60">
+            </div>
+      
+            <div class="loginForm_input">
+                <button class="loginForm_btn">Create account</button>
+            </div>
+      
+          </form>
     </main>
 
     <footer>
         <img src="./images/icon-left-groupomania-white.png" alt="Groupomania">
+        <ul>
+            <li><a href="#">mention legal</a></li>
+            <li><a href="mailto:admin@corpo.com">Contact</a></li>
+        </ul>
     </footer>
 
 <script src="https://unpkg.com/vue@3"></script>

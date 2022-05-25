@@ -14,10 +14,34 @@
     </header>
 
     <main>
+        <h2>Profil of userName</h2>
+        <div id="profil" class="profilForm">
+            <div class="profilForm_input">
+              <label for="userName">Modify user name : </label>
+              <input type="text" name="userName" id="name" required minlength="3" maxlength="20">
+              <button id="userNameModif_btn" class="profilModif_btn"><i class="fa-solid fa-pencil"></i></button>
+            </div>
+      
+            <div class="profilForm_input">
+              <label for="password">Modify password : </label>
+              <input type="password" name="password" id="password" required minlength="8" maxlength="60">
+              <button id="passwordModif_btn" class="profilModif_btn"><i class="fa-solid fa-pencil"></i></button>
+            </div>
+      
+            <div class="profilForm_input">
+              <label for="email">Modify your email : </label>
+              <input type="email" name="email" id="email" required maxlength="150">
+              <button id="emailModif_btn" class="profilModif_btn"><i class="fa-solid fa-pencil"></i></button>
+            </div>
+        </div>
     </main>
 
     <footer>
         <img src="./images/icon-left-groupomania-white.png" alt="Groupomania">
+        <ul>
+            <li><a href="#">mention legal</a></li>
+            <li><a href="mailto:admin@corpo.com">Contact</a></li>
+        </ul>
     </footer>
 
 <script src="https://unpkg.com/vue@3"></script>

@@ -53,3 +53,26 @@ button:active{
         
     }
 }
+
+//// SIGNUP/LOGIN BTN ////
+.singupForm_btn, .loginForm_btn{
+    width: 33%;
+    margin-left: 33%;
+    padding: 2%;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+//// PROFIL MODIF BUTTON ////
+.profilModif_btn{
+    width: 10%;
+    padding: 3% 1%;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin-top: 1%;
+}
+.profilModif_btn:active{
+    color: $secondary-color;
+}
