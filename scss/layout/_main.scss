@@ -121,7 +121,9 @@ main{
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-around;
-            padding-bottom: 2%;
+            padding-bottom: 1%;
+            margin-bottom: 1%;
+            border-bottom: 2px solid lighten($highligth, 30%);
         }
     }
 }
