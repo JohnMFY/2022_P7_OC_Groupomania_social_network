@@ -18,22 +18,26 @@
         <div id="profil" class="profilForm">
             <div class="profilForm_input">
               <label for="userName">Modify user name : </label>
-              <input type="text" name="userName" id="name" required minlength="3" maxlength="20">
+              <input type="text" v-model="userName" name="userName" id="name" required minlength="3" maxlength="20">
               <button id="userNameModif_btn" class="profilModif_btn"><i class="fa-solid fa-pencil"></i></button>
             </div>
       
             <div class="profilForm_input">
               <label for="password">Modify password : </label>
-              <input type="password" name="password" id="password" required minlength="8" maxlength="60">
+              <input type="password" v-model="password" name="password" id="password" required minlength="8" maxlength="60">
               <button id="passwordModif_btn" class="profilModif_btn"><i class="fa-solid fa-pencil"></i></button>
             </div>
       
             <div class="profilForm_input">
               <label for="email">Modify your email : </label>
-              <input type="email" name="email" id="email" required maxlength="150">
-              <button id="emailModif_btn" class="profilModif_btn"><i class="fa-solid fa-pencil"></i></button>
+              <input type="email" v-model="email" name="email" id="email" required maxlength="150">
+              <button id="emailModif_btn" class="profilModif_btn"><i class="fa-solid fa-pencil"></i></button> 
+            </div>
+            <div class="profilForm_input">
+            <button class="profilBackBtn"><a href="/frontend/index.html">Back</a></button>
             </div>
         </div>
+        
     </main>
 
     <footer>

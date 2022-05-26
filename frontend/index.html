@@ -14,7 +14,7 @@
             <div class="profil">
                 <h4>Profil</h4>
                 <div class="profil_btn">
-                    <button class="editProfil"><a href="/frontend/profil.html"><i class="fa-solid fa-pencil "></a></i></button>
+                    <button class="editProfil"><a href="/frontend/profil.html"><i class="fa-solid fa-pencil fa-lg"></a></i></button>
                     <button class="deleteProfil"><i class="fa-solid fa-xmark fa-lg"></i></button>
                 </div>
             </div>
@@ -23,14 +23,14 @@
         <form class="postForm">
             <div class="postForm_input">
               <label for="title">Post title:</label>
-              <input type="text" name="title" id="title" maxlength="150" required placeholder="Enter your title here...">
+              <input type="text" v-model="title" name="title" id="title" maxlength="150" required placeholder="Enter your title here...">
             </div>
             <div class="postForm_input">
               <label for="content">Content: </label>
-              <textarea name="content" id="content" maxlength="400" required placeholder="Enter your post here..."></textarea>
+              <textarea v-model="content" name="content" id="content" maxlength="400" required placeholder="Enter your post here..."></textarea>
             </div>
             <div class="postForm_input">
-              <input type="file" name="image" id="image" accept="image/png, image/jpeg, image/jpg">
+              <input v-model="imageUrl" type="file" name="image" id="image" accept="image/png, image/jpeg, image/jpg">
             </div>
             <div class="postForm_input">
               <button class="postForm_btn"><i class="fa-solid fa-paper-plane fa-lg"></i></button>
@@ -54,7 +54,7 @@
                 <div class="commentForm">
                     <h4>Username</h4>
                     <div>
-                    <textarea name="commentForm_input" id="comment_input" minlength="2" maxlength="150" required placeholder="Comment here..."></textarea>
+                    <textarea v-model="comment_content" name="commentForm_input" id="comment_input" minlength="2" maxlength="150" required placeholder="Comment here..."></textarea>
                     <button class="commentForm_btn"><i class="fa-solid fa-comment fa-lg"></i></button>
                     </div>
                 </div>

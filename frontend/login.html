@@ -19,12 +19,12 @@
 
             <div class="loginForm_input">
               <label for="userName">User name : </label>
-              <input type="text" name="userName" id="name" required minlength="3" maxlength="20">
+              <input type="text" v-model="userName" name="userName" id="name" required minlength="3" maxlength="20">
             </div>
       
             <div class="loginForm_input">
               <label for="password">Password : </label>
-              <input type="password" name="password" id="password" required minlength="8" maxlength="60">
+              <input type="password" v-model="password" name="password" id="password" required minlength="8" maxlength="60">
             </div>
       
             <div class="loginForm_input">

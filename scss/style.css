@@ -620,6 +620,15 @@ main {
   padding-bottom: 2%;
 }
 
+.profilForm_input .profilBackBtn {
+  width: 33%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  padding: 1%;
+  font-weight: bold;
+}
+
 @media screen and (max-width: 768px) {
   .mainProfil {
     height: 80vh;
