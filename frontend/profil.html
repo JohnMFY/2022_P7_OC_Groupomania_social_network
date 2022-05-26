@@ -13,7 +13,7 @@
         <h1><img src="./images/icon-left-groupomania-white.png" alt="Groupomania"></h1>
     </header>
 
-    <main>
+    <main id="app" class="mainProfil">
         <h2>Profil of userName</h2>
         <div id="profil" class="profilForm">
             <div class="profilForm_input">
@@ -46,7 +46,16 @@
 
 <script src="https://unpkg.com/vue@3"></script>
 <script>
+  const RootComponent = {
+    data(){
 
+    },
+    methods:{
+
+    }
+  }
+  const app = Vue.createApp({RootComponent}).mount('#app')
+  console.log(app)
 </script>
 </body>
 </html>

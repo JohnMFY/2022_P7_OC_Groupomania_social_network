@@ -38,7 +38,8 @@
         </form>
 
         <section class="allPost">
-            <article class="post" v-for="post of posts" :key="post.id">
+            <h2 v-if="posts.length < 1">No contents for the moment</h2>
+            <article v-else class="post" v-for="post of posts" :key="post.id">
                 <div class="post_header">
                     <h4>{{post.user.userName}}</h4>
                     <div class="post_btn"><!-- v-if="user.id == post.userId" -->
@@ -53,7 +54,7 @@
                 <div class="commentForm">
                     <h4>Username</h4>
                     <div>
-                    <textarea name="commentForm_input" id="comment_input" maxlength="280" required placeholder="Comment here..."></textarea>
+                    <textarea name="commentForm_input" id="comment_input" minlength="2" maxlength="150" required placeholder="Comment here..."></textarea>
                     <button class="commentForm_btn"><i class="fa-solid fa-comment fa-lg"></i></button>
                     </div>
                 </div>

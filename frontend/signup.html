@@ -13,7 +13,7 @@
         <h1><img src="./images/icon-left-groupomania-white.png" alt="Groupomania"></h1>
     </header>
 
-    <main>
+    <main id="app" class="mainSignup">
         <h2>Signup</h2>
 
         <form id="signup" class="signupForm">
@@ -52,7 +52,16 @@
 
 <script src="https://unpkg.com/vue@3"></script>
 <script>
+  const RootComponent = {
+    data(){
 
+    },
+    methods:{
+
+    }
+  }
+  const app = Vue.createApp({RootComponent}).mount('#app')
+  console.log(app)
 </script>
 </body>
 </html>

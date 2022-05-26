@@ -122,11 +122,50 @@ main{
             flex-flow: row nowrap;
             justify-content: space-around;
             padding-bottom: 2%;
-            button{
-                width: 15%;
-                padding: 0.5%;
-                border-radius: 20px;
+        }
+    }
+}
+
+////////// MEDIA //////////
+@media screen and (max-width:768px){
+
+//// HEADER ////
+    header{
+        flex-flow: row wrap;
+        justify-content: center;
+
+        h1{
+            margin: 0%;
+            img{
+                margin-bottom: 0%;
+            }
+        }
+        .profil{
+            margin: 2% 0%;
+            width: 25%;
+        }
+    }
+
+//// MAIN ////
+    // POST FORM //
+    .postForm{
+        width: 90%;
+        margin-left: 5%;
+    }
+    // ALL POST //
+    
+    .allPost{
+        width: 96%;
+        margin: auto 2%;
+
+        h4{
+            width: 33%;
+        }
+        .post_header{
+            h4{
+                width: 33%;
             }
         }
     }
+    
 }
