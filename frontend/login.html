@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/8768a0b980.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/scss/style.css">
+    <link rel="stylesheet" href="./scss/style.css">
     <title>Groupomania/Login</title>
 </head>
 <body>
@@ -46,14 +46,16 @@
 <script>
   const RootComponent = {
     data(){
-
+      return{
+          userName:'',
+          password:'',
+      }
     },
     methods:{
 
     }
   }
   const app = Vue.createApp({RootComponent}).mount('#app')
-  console.log(app)
 </script>
 </body>
 </html>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/8768a0b980.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/scss/style.css">
+    <link rel="stylesheet" href="./scss/style.css">
     <title>Groupomania</title>
 </head>
 <body id="app">
@@ -59,12 +59,10 @@
                     </div>
                 </div>
 
-                <div class="comment"> <!--  <div class="comment" v-for="comment of comments"> ne fonctionne pas                    
-                    <h4>{{post.comment.user.userName}}</h4>
-                    <p>{{post.commment.content}}</p>--> 
-                    <h4>Username</h4>
-                    <p> this is a comment</p>
-                    <div class="comment_btn"><!-- v-if="user.id == comment.userId" -->
+                <div class="comment" v-for="comment of post.comments">                
+                    <h4>{{comment.user.userName}}</h4>
+                    <p>{{comment.content}}</p> 
+                    <div class="comment_btn"><!-- v-if="user.id == comment.userId || admin = true" -->
                         <button class="edit"><i class="fa-solid fa-pencil"></i></button>
                         <button class="delete"><i class="fa-solid fa-xmark fa-lg"></i></button>
                     </div>        

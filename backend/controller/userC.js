@@ -32,7 +32,9 @@ const User = require('../model/userM');
       .then((user) => {res.status(200).json(user);})
       .catch((error) => {res.status(500).json({error: error});});
     })
-    .catch((error) => {res.status(500).json({error: error});});
+    .catch((error) => {
+      res.status(500).json({error: error});
+    });
   };
 //////////////////////////////////////////////////
 
@@ -41,7 +43,7 @@ const User = require('../model/userM');
     const TOKEN = process.env.TOKEN;
 
     exports.login = (req, res, next) => {
-      User.findOne({ email: req.body.email })
+      User.findOne({ where: {email: req.body.email}})
         .then(user => {
           if (!user) {
             return res.status(401).json({error: 'User not found'});

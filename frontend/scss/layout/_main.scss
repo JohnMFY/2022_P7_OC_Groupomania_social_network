@@ -116,6 +116,7 @@ main{
     // COMMENT //
     .comment{
         border-top: 2px solid lighten($highligth, 30%);
+        margin-bottom: 1%;
 
         .comment_btn{
             display: flex;
@@ -139,7 +140,7 @@ main{
         h1{
             margin: 0%;
             img{
-                margin-bottom: 0%;
+                margin-bottom: 1%;
             }
         }
         .profil{
