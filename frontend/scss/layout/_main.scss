@@ -95,13 +95,13 @@ main{
     // COMMENT FORM //
     .commentForm{
         border-top: 2px solid lighten($highligth, 30%);
-
+        
         div{
             display: flex;
             justify-content: space-around;
             flex-flow: row nowrap;
             align-content: center;
-            padding-bottom: 2%;
+            padding: 2% 0%;
         }
         #comment_input{
             width: 85%;
