@@ -39,7 +39,7 @@
 
         <section class="allPost">
             <h2 v-if="posts.length < 1">No contents for the moment</h2>
-            <article v-else class="post" v-for="post of posts" :key="post.id">
+            <article v-else class="post" v-for="post of posts.slice().reverse()" :key="post.id">
                 <div class="post_header">
                     <h4>{{post.user.userName}}</h4>
                     <div class="post_btn"><!-- v-if="user.id == post.userId" -->
