@@ -1,11 +1,11 @@
 <template>
 <div>
   <header>
-    <img src="./assets/icon-left-groupomania-white.png" alt="">
+    <img src="./assets/icon-left-groupomania-white.png" alt="groupomania">
   </header>
   <router-view/>
   <footer>
-    <img src="./assets/icon-left-groupomania-white.png" alt="">
+    <img src="./assets/icon-left-groupomania-white.png" alt="groupomania">
     <div>
       <span>© 2022 Copyright : Groupomania</span>
       <a href="mailto:admin@corpo.com">Contact</a>
@@ -15,26 +15,21 @@
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
 body{
   margin: 0%;
   padding: 0%;
+  width: 100%;
+  text-align: center;
 }
 
 header{
-  background-color: #FD2D01;
+  background-color: #4E5166;
   padding: 1% 0%;
   margin-bottom: 1%;
 }
 footer{
-  background-color: #FD2D01;
+  background-color: #4E5166;
   padding: 1% 0%;
   margin-top: 1%;
   img{
