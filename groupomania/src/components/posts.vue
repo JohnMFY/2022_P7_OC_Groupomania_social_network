@@ -1,5 +1,5 @@
 <template>
-  <section class="allPost">
+  <section class="allPost" @posts='getAllPosts()'>
     <h2 v-if="posts.length < 1">No contents for the moment</h2>
     <article
       v-else
@@ -66,13 +66,11 @@ export default {
       fetch('http://localhost:3000/posts', {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+          Authorization: `bearer ${token}`,
+          'Content-Type': 'application/json'
         }
       }).then(async (result) => {
-        if (result.ok) {
-          return result.json()
-        }
+        return result.json()
       })
     }
   }
