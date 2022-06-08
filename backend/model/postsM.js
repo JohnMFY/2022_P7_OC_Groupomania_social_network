@@ -5,7 +5,6 @@ const Post = bdd.define('posts',{
 
     title: {
         type: DataTypes.STRING(150),
-        unique: true,
         allowNull: false,
     },
     content: {

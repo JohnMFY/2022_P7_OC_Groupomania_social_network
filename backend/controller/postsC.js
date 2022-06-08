@@ -27,10 +27,12 @@ exports.getOnePosts = (req, res) => {
 
 ////////////////// CREATE POST //////////////////
 exports.createOnePosts = (req, res) => {
+  const postObject = JSON.parse(req.body.post)
   Posts.create({
-    title: req.body.title,
-    content: req.body.content,
-    userId: req.auth.userId
+    title: postObject.title,
+    content: postObject.content,
+    userId: req.auth.userId,
+    imageUr: (req.file)?`${req.protocol}://${req.get('host')}/images/${req.file.filename}`:null
   })
     .then((posts) => { res.status(200).json(posts); })
     .catch((error) => { res.status(400).json({ error: error }); });

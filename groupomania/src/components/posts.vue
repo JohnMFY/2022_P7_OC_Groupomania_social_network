@@ -1,7 +1,12 @@
 <template>
-  <section class="allPost" id="app">
+  <section class="allPost">
     <h2 v-if="posts.length < 1">No contents for the moment</h2>
-    <article v-else class="post" v-for="post of posts.slice().reverse()" :key="post.id">
+    <article
+      v-else
+      class="post"
+      v-for="post of posts.slice().reverse()"
+      :key="post.id"
+    >
       <div class="post_header">
         <h4>{{ post.user.userName }}</h4>
         <div class="post_btn">
@@ -48,34 +53,16 @@
   </section>
 </template>
 <script>
+import { ref } from 'vue'
 export default {
-  name: 'allPosts'
-}
-/*
-const apiData = {
-  data () {
-    return {
-      group: 'Groupomania',
-      posts: []
-    }
-  },
-  created () {
-    fetch('http://localhost:3000/posts')
-      .then((response) => response.json())
-      .then((json) => {
-        this.posts = json
-      })
+  name: 'allPosts',
+  async setup () {
+    const posts = ref(null)
+    const token = localStorage.getItem('token')
+    const headers = { 'Content-Type': 'application/json', Authorisation: `Bearer ${token} ` }
+    const allPost = await fetch('http://localhost:3000/posts', { headers })
+    posts.value = await allPost.json()
+    return { posts }
   }
 }
-
-const app = Vue.createApp(apiData).mount('#app')
-*/
-/*
-async created() {
-  // GET request using fetch with async/await
-  const response = await fetch("https://api.npms.io/v2/search?q=vue");
-  const data = await response.json();
-  this.totalVuePackages = data.total;
-}
-*/
 </script>
