@@ -53,16 +53,28 @@
   </section>
 </template>
 <script>
-import { ref } from 'vue'
 export default {
   name: 'allPosts',
-  async setup () {
-    const posts = ref(null)
-    const token = localStorage.getItem('token')
-    const headers = { 'Content-Type': 'application/json', Authorisation: `Bearer ${token} ` }
-    const allPost = await fetch('http://localhost:3000/posts', { headers })
-    posts.value = await allPost.json()
-    return { posts }
+  data () {
+    return {
+      posts: []
+    }
+  },
+  methods: {
+    getAllPosts () {
+      const token = localStorage.getItem('token')
+      fetch('http://localhost:3000/posts', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      }).then(async (result) => {
+        if (result.ok) {
+          return result.json()
+        }
+      })
+    }
   }
 }
 </script>
