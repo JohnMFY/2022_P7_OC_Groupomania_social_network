@@ -138,9 +138,6 @@ export default {
             localStorage.setItem('user', JSON.stringify(data));
             this.$router.push('/Network')
           })
-          .catch((error)=> {
-            document.querySelector('#logError').innerHTML = error.error
-          })
       }
     },
   },
