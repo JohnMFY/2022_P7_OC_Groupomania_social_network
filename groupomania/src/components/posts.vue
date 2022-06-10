@@ -60,22 +60,21 @@ export default {
       posts: []
     }
   },
-  methods: {
-    async getAllPosts () {
-      const token = localStorage.getItem('token')
-      fetch('http://localhost:3000/posts', {
-        method: 'GET',
-        headers: {
-          Authorization: `bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      }).then(async (result) => {
-        this.posts = result.json()
-      })
-    }
-  },
-  created () {
-    this.getAllPosts()
+  mounted () {
+    const token = localStorage.getItem('token')
+    fetch('http://localhost:3000/posts', {
+      method: 'GET',
+      headers: {
+        Authorization: `bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    }).then(async (result) => {
+      this.posts = result.json()
+    }).catch(err => console.log(err.message))
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+</style>
