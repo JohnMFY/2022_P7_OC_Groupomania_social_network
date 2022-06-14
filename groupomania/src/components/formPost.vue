@@ -50,22 +50,24 @@ export default {
   },
   methods: {
     postForm (e) {
-      const token = localStorage.getItem('token')
+      const user = JSON.parse(localStorage.getItem('user'))
       if (e.currentTarget.reportValidity()) {
+        const data = new FormData()
+        data.append('post', JSON.stringify({
+          title: this.postData.title,
+          content: this.postData.content
+        }))
+        data.append('image', document.querySelector('#image').files[0])
         fetch('http://localhost:3000/posts', {
           method: 'POST',
           headers: {
-            Authorization: `bearer ${token}`,
-            'Content-Type': 'application/json'
+            Authorization: `bearer ${user.token}`
           },
-          body: JSON.stringify({
-            title: this.postData.title,
-            content: this.postData.content
-          })
+          body: data
         })
           .then(async (result) => {
             if (result.ok) {
-              return result.json()
+              window.location.reload()
             } else {
               return Promise.reject(await result.json())
             }
@@ -77,15 +79,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .postFrom{
-    width: 100%;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    form {
-      display: flex;
-      flex-flow: column nowrap;
-      width: 33%;
-  }
-  }
+  .postForm {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  color: red;
+}
 </style>

@@ -23,7 +23,7 @@
       <button class="postForm_btn">modify profile</button>
     </div>
   </form>
-  <button class="userForm_btn">Delete account</button>
+  <button class="userForm_btn" @click="deleteUser">Delete account</button>
   </div>
 </template>
 <script>

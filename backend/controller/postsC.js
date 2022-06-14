@@ -10,7 +10,8 @@ exports.getAllPosts = (req, res) => {
     include: [
       { model: User, attributes: ['userName'] },
       { model: Comment, include: { model: User, attributes: ['userName'] } }
-    ]
+    ],
+    order:[['createdAT', 'desc']]
   })
     .then((posts) => { res.status(200).json(posts); })
     .catch((error) => { res.status(400).json({ error: error }); });

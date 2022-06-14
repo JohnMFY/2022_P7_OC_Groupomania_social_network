@@ -21,7 +21,8 @@ const Comment = require('../model/commentM');
         Comment.create({
             id: req.body.id,
             content: req.body.content,
-            userId: req.auth.userId
+            userId: req.auth.userId,
+            postId: req.body.postId //pour associer un comment à un post
         })
         .then((comment) => {res.status(200).json(comment);})
         .catch((error) => {res.status(400).json({error: error});});

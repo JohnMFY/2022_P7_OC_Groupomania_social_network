@@ -19,7 +19,7 @@ const User = bdd.define('users',{
     },
     admin: {
         type: DataTypes.BOOLEAN,
-        default: false,
+        defaultValue: false,
     },
 },
 

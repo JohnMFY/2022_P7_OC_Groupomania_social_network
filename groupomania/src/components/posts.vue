@@ -4,13 +4,13 @@
     <article
       v-else
       class="post"
-      v-for="post of posts.slice().reverse()"
+      v-for="post of posts"
       :key="post.id"
     >
       <div class="post_header">
         <h4>{{ post.user.userName }}</h4>
         <div class="post_btn">
-          <!-- v-if="user.id == post.userId" -->
+          <!-- v-if="user.id == post.userId || user.admin" -->
           <button class="edit"><i class="fa-solid fa-pencil"></i></button>
           <button class="delete">
             <i class="fa-solid fa-xmark fa-lg"></i>
@@ -42,7 +42,7 @@
         <h4>{{ comment.user.userName }}</h4>
         <p>{{ comment.content }}</p>
         <div class="comment_btn">
-          <!-- v-if="user.id == comment.userId || admin = true" -->
+          <!-- v-if="user.id == comment.userId || user.admin" -->
           <button class="edit"><i class="fa-solid fa-pencil"></i></button>
           <button class="delete">
             <i class="fa-solid fa-xmark fa-lg"></i>
@@ -57,19 +57,20 @@ export default {
   name: 'allPosts',
   data () {
     return {
-      posts: []
+      posts: [],
+      user: null
     }
   },
   mounted () {
-    const token = localStorage.getItem('token')
+    this.user = JSON.parse(localStorage.getItem('user'))
     fetch('http://localhost:3000/posts', {
       method: 'GET',
       headers: {
-        Authorization: `bearer ${token}`,
+        Authorization: `bearer ${this.user.token}`,
         'Content-Type': 'application/json'
       }
     }).then(async (result) => {
-      this.posts = result.json()
+      this.posts = await result.json()
     }).catch(err => console.log(err.message))
   }
 }

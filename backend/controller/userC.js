@@ -29,7 +29,17 @@ const User = require('../model/userM');
         userName: req.body.userName,
         password: hash,
       })
-      .then((user) => {res.status(200).json(user);})
+      .then((user) => {
+        return res.status(200).json({
+          userId: user.id,
+          admin: user.admin,
+          token: jwt.sign(
+            { userId: user.id, admin: user.admin },
+            TOKEN,
+            { expiresIn: '24h'}
+          )
+        });
+      })
       .catch((error) => {res.status(500).json({error: error});});
     })
     .catch((error) => {
@@ -60,7 +70,7 @@ const User = require('../model/userM');
                 token: jwt.sign(
                   { userId: user.id, admin: user.admin },
                   TOKEN,
-                  { expiresIn: '4h'}
+                  { expiresIn: '24h'}
                 )
               });
             })
