@@ -3,11 +3,11 @@
     <h1>{{ msg }}</h1>
     <article>
       <div class="container">
-        <span id="logError"></span>
         <div>
           <h3 v-if="this.mod == 'login'">To create an account<a @click="this.mod='signup'">SIGNUP</a></h3>
           <h3 v-if="this.mod == 'signup'">If you have an account<a @click="this.mod='login'">LOGIN</a></h3>
         </div>
+        <span id="logError"></span>
         <form v-if="this.mod == 'signup'" class="create-account" @submit.prevent="signup" method="post">
           <h2>Create account</h2>
           <div>Use your email for registration</div>
@@ -110,7 +110,7 @@ export default {
             this.$router.push('/Network')
           })
           .catch((error)=> {
-            document.querySelector('#logError').innerHTML = error.error
+            document.querySelector('#logError').innerHTML = error.error + ' <i class="fa-solid fa-triangle-exclamation"></i>'
           })
       }
     },
@@ -137,6 +137,8 @@ export default {
           .then((data) => {
             localStorage.setItem('user', JSON.stringify(data));
             this.$router.push('/Network')
+          }).catch((error)=> {
+            document.querySelector('#logError').innerHTML = 'Account creation failed <i class="fa-solid fa-triangle-exclamation"></i>'
           })
       }
     },
