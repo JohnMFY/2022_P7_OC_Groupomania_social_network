@@ -24,12 +24,12 @@ body{
 }
 
 header{
-  background-color: #4E5166;
+  background-color: darken(rgb(253,45,1), 7%);
   padding: 1% 0%;
   margin-bottom: 1%;
 }
 footer{
-  background-color: #4E5166;
+  background-color: darken(rgb(253,45,1), 7%);
   padding: 1% 0%;
   margin-top: 1%;
   img{
@@ -40,8 +40,8 @@ footer{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    color: white;
     font-weight: bold;
+    color: white;
     a{
       text-decoration: none;
       color: white;
@@ -49,12 +49,11 @@ footer{
       border-radius: 20px;
     }
     a:hover{
-      color: #2c3e50;
-      background-color: white;
+      color: white;
+      background-color: #2c3e50;
       padding:0.5%;
-      border-radius: 20px;
+      border-radius: 10px;
     }
   }
 }
-
 </style>
