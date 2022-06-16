@@ -77,5 +77,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.post{
+  border: solid 2px rgba(240, 10, 10, 0.8);
+  box-shadow: rgba(240, 10, 10, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  width: 50%;
+  margin: 0% 25% 2% 25%;
 
+}
 </style>

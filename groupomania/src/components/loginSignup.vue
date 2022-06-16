@@ -110,7 +110,7 @@ export default {
             this.$router.push('/Network')
           })
           .catch((error)=> {
-            document.querySelector('#logError').innerHTML = error.error + ' <i class="fa-solid fa-triangle-exclamation"></i>'
+            document.querySelector('#logError').innerHTML = ' <i class="fa-solid fa-triangle-exclamation"></i> ' + error.error + ' <i class="fa-solid fa-triangle-exclamation"></i>'
           })
       }
     },
@@ -137,8 +137,8 @@ export default {
           .then((data) => {
             localStorage.setItem('user', JSON.stringify(data));
             this.$router.push('/Network')
-          }).catch((error)=> {
-            document.querySelector('#logError').innerHTML = 'Account creation failed <i class="fa-solid fa-triangle-exclamation"></i>'
+          }).catch(() => {
+            document.querySelector('#logError').innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Account creation failed <i class="fa-solid fa-triangle-exclamation"></i>'
           })
       }
     },

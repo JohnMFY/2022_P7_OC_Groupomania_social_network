@@ -80,10 +80,44 @@ export default {
 
 <style lang="scss" scoped>
   .postForm {
-  width: 100%;
   display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  color: red;
+  flex-flow: column wrap;
+  width: 33%;
+  border: solid rgb(240, 10, 10) 2px;
+  padding: 1%;
+  margin: 2% 33% 4% 33%;
+  background-color: rgb(255, 215, 215);
+  box-shadow: rgba(78, 81, 102, 0.4) 0px 0px 0px 2px, rgba(78, 81, 102, 0.65) 0px 4px 6px -1px, rgba(78, 81, 102, 0.08) 0px 1px 0px;
+  &_input{
+    width:100%;
+    display: flex;
+    flex-flow:column nowrap;
+    label{
+      font-weight: bold;
+    }
+    input, #content{
+      margin: 2% 0%;
+    }
+  }
+  button{
+    display: flex;
+    justify-content: center;
+    width: 33%;
+    margin: 2% 33%;
+    padding: 1%;
+    border: solid #4E5166 2px;
+    border-radius: 5px;
+    font-weight: bolder;
+    box-shadow: rgba(78, 81, 102, 0.4) -4px 4px 4px 4px;
+  }
+  button:hover{
+    box-shadow: rgba(78, 81, 102, 0.6) -2px 2px 2px 2px;
+    border: solid rgb(240, 10, 10) 2px;
+  }
+  button:active{
+    box-shadow: rgba(78, 81, 102, 0.8) 0px 2px 2px;
+    background: lighten(#4E5166, 10%);
+    color: white;
+  }
 }
 </style>

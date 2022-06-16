@@ -1,4 +1,4 @@
-const multer = require('multer'); // npm install multer TODO for the picture post and express-static for the call on app.js
+const multer = require('multer');
 
 const MIME_TYPES = {
   'image/jpg': 'jpg',
@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 
 //change the name of the picture
   filename: (req, file, callback) => { 
-    const name = file.originalname.split(' ').join('_'); //replace the space with underscore
+    const name = file.originalname.split(' ').join('_');
     const extension = MIME_TYPES[file.mimetype]; 
     callback(null, name + Date.now() + '.' + extension);
   }
