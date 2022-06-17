@@ -124,9 +124,8 @@ export default {
       width: 50%;
     }
     .commentForm_btn{
-      width: 6%;
       margin: 0% 2%;
-      padding: 2% 0%;
+      padding: 2% 2%;
       border-radius: 30px;
       border: solid 2px rgb(78, 81, 102);
     }
