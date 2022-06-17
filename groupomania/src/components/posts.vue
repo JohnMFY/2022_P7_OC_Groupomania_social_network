@@ -9,8 +9,7 @@
     >
       <div class="post_header">
         <h3>{{ post.user.userName }}</h3>
-        <div class="post_btn">
-          <!-- v-if="user.id == post.userId || user.admin" -->
+        <div class="post_btn" v-if="user.userId == post.userId || user.admin">
           <button class="edit option"><i class="fa-solid fa-pencil"></i></button>
           <button class="delete option">
             <i class="fa-solid fa-xmark fa-lg"></i>
@@ -39,8 +38,7 @@
       <div class="post_comment" v-for="comment of post.comments" :key="comment.id">
         <h4>{{ comment.user.userName }}</h4>
         <p>{{ comment.content }}</p>
-        <div class="comment_btn">
-          <!-- v-if="user.id == comment.userId || user.admin" -->
+        <div class="comment_btn" v-if="user.userId == comment.userId || user.admin">
           <button class="edit option"><i class="fa-solid fa-pencil"></i></button>
           <button class="delete option">
             <i class="fa-solid fa-xmark fa-lg"></i>
@@ -95,7 +93,8 @@ export default {
       box-shadow: rgba(240, 10, 10, 0.5) 0px 0px 0px 3px;
       background-color: white;
       padding: 1%;
-      border-radius: 20px
+      border-radius: 20px;
+      width:10%
     }
     .post_btn{
       width: 10%;
@@ -146,7 +145,6 @@ export default {
     background-color: white;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
     border-radius: 20px;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
@@ -154,12 +152,21 @@ export default {
       box-shadow: rgba(240, 10, 10, 0.5) 0px 0px 0px 3px;
       padding: 1%;
       margin: 1% 0.5%;
-      border-radius: 20px
+      border-radius: 20px;
+      width: 10%;
+    }
+    p{
+      display: flex;
+      text-align: start;
+      margin-left: 2%;
+      width: 75%;
+
     }
     .comment_btn{
       width: 10%;
       display: flex;
       justify-content: space-around;
+      align-content: flex-end;
     }
   }
   .option{
