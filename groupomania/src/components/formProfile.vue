@@ -20,7 +20,8 @@
         placeholder="Email"
       />
     <div class="userForm_input">
-      <button class="postForm_btn">modify profile</button>
+      <button>modify profile</button>
+      <button @click="back">back</button>
     </div>
   </form>
   <button class="delete" @click="deleteUser"><i class="fa-solid fa-triangle-exclamation fa-lg"></i> Delete account <i class="fa-solid fa-triangle-exclamation fa-lg"></i></button>
@@ -38,14 +39,17 @@ export default {
     }
   },
   methods: {
+    back () {
+      this.$router.push('/Network')
+    },
     userForm (e) {
-      const token = localStorage.getItem('token')
+      this.user = JSON.parse(localStorage.getItem('user'))
       const userId = localStorage.getItem('userId')
       if (e.currentTarget.reportValidity()) {
         fetch(`http://localhost:3000/user/${userId}`, {
           method: 'PUT',
           headers: {
-            Authorization: `bearer ${token}`,
+            Authorization: `bearer ${this.user.token}`,
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
@@ -63,13 +67,13 @@ export default {
       }
     },
     deleteUser (e) {
-      const token = localStorage.getItem('token')
+      this.user = JSON.parse(localStorage.getItem('user'))
       const userId = localStorage.getItem('userId')
       if (e.currentTarget.reportValidity()) {
         fetch(`http://localhost:3000/user/${userId}`, {
           method: 'DELETE',
           headers: {
-            Authorization: `bearer ${token}`,
+            Authorization: `bearer ${this.user.token}`,
             'Content-Type': 'application/json'
           }
         }).then(async (result) => {
@@ -135,6 +139,29 @@ export default {
     color: red;
     .fa-triangle-exclamation{
       display: contents;
+    }
+  }
+}
+@media screen and (max-width: 1024px){
+  .profile{
+  min-height: 81vh;
+    h2{
+      text-decoration: underline;
+      margin: 4%;
+    }
+    .userForm {
+      padding: 2%;
+      width: 78%;
+      margin: 10%;
+    }
+    button{
+      width: 50%;
+      margin: 2% 25%;
+      padding: 1%;
+    }
+    .delete{
+      width: 80%;
+      margin: 10% auto;
     }
   }
 }

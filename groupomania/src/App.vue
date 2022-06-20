@@ -56,4 +56,28 @@ footer{
     }
   }
 }
+@media screen and (max-width: 1024px){
+  img{
+    width: 60%;
+  }
+  footer{
+    img{
+      width: 30%;
+    }
+    div{
+      font-weight: 500;
+      color: white;
+      font-size: 12px;
+      span{
+        font-size: 10px;
+      }
+      a{
+        text-decoration: none;
+        color: white;
+        padding:0.5%;
+        border-radius: 20px;
+      }
+    }
+  }
+}
 </style>

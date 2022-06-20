@@ -177,4 +177,35 @@ export default {
     }
   }
 }
+@media screen and (max-width: 1024px){
+  .topPage{
+  flex-flow: column wrap;
+    .profile{
+    width: 66%;
+    margin: 4% 33%;
+    padding: 0% 1% 1% 1%;
+      h4{
+        margin: 2% auto;
+      }
+      &_btn{
+        margin: 1% 0%;
+        .edit{
+          padding: 2%;
+        }
+        .logout{
+          padding: 2% 2.5%;
+        }
+      }
+    }
+    .postForm {
+      display: flex;
+      flex-flow: column wrap;
+      width: 80%;
+      border: solid rgb(240, 10, 10) 2px;
+      border-radius: 10px;
+      padding: 1%;
+      margin: auto;
+    }
+  }
+}
 </style>

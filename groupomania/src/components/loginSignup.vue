@@ -224,5 +224,16 @@ h1{
 #logError{
   color: red;
 }
-
+@media screen and (max-width: 1024px){
+  h1{
+    margin: 4%;
+  }
+  .container {
+    form {
+      width: 80%;
+      margin: 4% 9%;
+      padding: 2%;
+    }
+  }
+}
 </style>
