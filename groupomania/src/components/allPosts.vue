@@ -1,51 +1,22 @@
 <template>
   <section class="allPost">
     <h2 class="emptyApi" v-if="posts.length < 1">No contents for the moment</h2>
-    <article
+    <postVue
       v-else
       class="post"
       v-for="post of posts"
       :key="post.id"
+      :post='post'
     >
-      <div class="post_header">
-        <h3>{{ post.user.userName }}</h3>
-        <div class="post_btn" v-if="user.userId == post.userId || user.admin">
-          <button class="edit option" @click="editPost"><i class="fa-solid fa-pencil"></i></button>
-          <button class="delete option" @click="deletePost"><i class="fa-solid fa-xmark fa-lg"></i></button>
-        </div>
-      </div>
-      <div class="post_content">
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.content }}</p>
-      </div>
-      <form class="post_commentForm">
-        <textarea
-          v-model="comment_content"
-          name="commentForm_input"
-          id="comment_input"
-          minlength="2"
-          maxlength="150"
-          required
-          placeholder="Comment here..."
-        ></textarea>
-        <button class="commentForm_btn" @click="postComment">
-          <i class="fa-solid fa-comment fa-lg"></i>
-        </button>
-      </form>
-
-      <div class="post_comment" v-for="comment of post.comments" :key="comment.id">
-        <h4>{{ comment.user.userName }}</h4>
-        <p>{{ comment.content }}</p>
-        <div class="comment_btn" v-if="user.userId == comment.userId || user.admin">
-          <button class="edit option" @click="editComment"><i class="fa-solid fa-pencil"></i></button>
-          <button class="delete option" @click="deleteComment"><i class="fa-solid fa-xmark fa-lg"></i></button>
-        </div>
-      </div>
-    </article>
+    </postVue>
   </section>
 </template>
 <script>
+import postVue from '@/components/onePost.vue'
 export default {
+  components: {
+    postVue
+  },
   name: 'allPosts',
   data () {
     return {
@@ -69,16 +40,17 @@ export default {
       this.posts = await result.json()
     }).catch(err => console.log(err.message))
   },
-  method: {
-    deletePost () {
-      const postId = 7
-      fetch(`http://localhost:3000/posts/${postId}`, {
+  methods: {
+    editPost () {
+      console.log('test')
+    },
+    deletePost (e) {
+      fetch(`http://localhost:3000/posts/${this.posts.postId}`, {
         method: 'DELETE',
         headers: {
           Authorization: `bearer ${this.user.token}`
         }
-      })
-        .then(res => res.json())
+      }).then(res => res.json())
     },
     postComment (e) {
       const user = JSON.parse(localStorage.getItem('user'))
@@ -95,15 +67,20 @@ export default {
           },
           body: data
         })
-          .then(async (result) => {
+          .then((result) => {
             if (result.ok) {
               alert('OK')
-              window.location.reload()
+              // eslint-disable-next-line
+              //window.location.reload()
             } else {
-              return Promise.reject(await result.json())
+              return Promise.reject(result.json())
             }
           })
       }
+    },
+    editComment () {
+    },
+    deleteComment () {
     }
   }
 }
@@ -152,6 +129,12 @@ export default {
       text-align: start;
       padding-left: 2%;
     }
+    img{
+      object-fit: contain;
+      max-width: 80%;
+      max-height: 80%;
+      border-radius: 20px;
+    }
   }
   &_commentForm{
     padding: 2% 0%;
@@ -180,9 +163,10 @@ export default {
     padding: 0% 1%;
     background-color: white;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     border-radius: 20px;
     align-items: center;
+    justify-content: flex-start;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
     h4{
       box-shadow: rgba(240, 10, 10, 0.5) 0px 0px 0px 3px;
@@ -194,8 +178,8 @@ export default {
     p{
       display: flex;
       text-align: start;
-      margin-left: 2%;
-      width: 75%;
+      margin: 2%;
+      width: 80%;
 
     }
     .comment_btn{

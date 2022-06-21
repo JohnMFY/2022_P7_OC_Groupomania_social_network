@@ -7,7 +7,7 @@
 
 <script>
 import formPost from '@/components/formPost.vue'
-import allPosts from '@/components/posts.vue'
+import allPosts from '@/components/allPosts.vue'
 export default {
   name: 'NetworkView',
   components: {

@@ -1,30 +1,12 @@
 <template>
   <div class="profile">
     <h2>PROFILE</h2>
-    <form class="userForm" @submit.prevent="userForm" method="post">
-      <input
-        type="text"
-        v-model="userData.userName"
-        name="userName"
-        required
-        minlength="3"
-        maxlength="20"
-        placeholder="User Name"
-      />
-      <input
-        type="email"
-        v-model="userData.email"
-        name="email"
-        required
-        maxlength="150"
-        placeholder="Email"
-      />
-    <div class="userForm_input">
-      <button>modify profile</button>
+    <article class="user">
+      <h3> {{ user.userName }} </h3>
+      <h4> {{ user.email }} </h4>
       <button @click="back">back</button>
-    </div>
-  </form>
-  <button class="delete" @click="deleteUser"><i class="fa-solid fa-triangle-exclamation fa-lg"></i> Delete account <i class="fa-solid fa-triangle-exclamation fa-lg"></i></button>
+    </article>
+    <button class="delete" @click="deleteUser"><i class="fa-solid fa-triangle-exclamation fa-lg"></i> Delete account <i class="fa-solid fa-triangle-exclamation fa-lg"></i></button>
   </div>
 </template>
 <script>
@@ -32,54 +14,38 @@ export default {
   name: 'userProfile',
   data () {
     return {
-      userData: {
-        userName: '',
-        email: ''
-      }
+      user: []
     }
+  },
+  mounted () {
+    this.user = JSON.parse(localStorage.getItem('user'))
+    fetch(`http://localhost:3000/user/${this.user.userId}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `bearer ${this.user.token}`,
+        'Content-Type': 'application/json'
+      }
+    }).then(async (result) => {
+      this.user = await result.json()
+    }).catch(err => console.log(err.message))
   },
   methods: {
     back () {
       this.$router.push('/Network')
     },
-    userForm (e) {
+    deleteUser () {
       this.user = JSON.parse(localStorage.getItem('user'))
-      const userId = localStorage.getItem('userId')
-      if (e.currentTarget.reportValidity()) {
-        fetch(`http://localhost:3000/user/${userId}`, {
-          method: 'PUT',
-          headers: {
-            Authorization: `bearer ${this.user.token}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            userName: this.userData.userName,
-            email: this.userData.email
-          })
-        })
-          .then(async (result) => {
-            if (result.ok) {
-              return result.json()
-            } else {
-              return Promise.reject(await result.json())
-            }
-          })
-      }
-    },
-    deleteUser (e) {
-      this.user = JSON.parse(localStorage.getItem('user'))
-      const userId = localStorage.getItem('userId')
-      if (e.currentTarget.reportValidity()) {
-        fetch(`http://localhost:3000/user/${userId}`, {
-          method: 'DELETE',
-          headers: {
-            Authorization: `bearer ${this.user.token}`,
-            'Content-Type': 'application/json'
-          }
-        }).then(async (result) => {
-          this.posts = await result.json()
-        }).catch(err => console.log(err.message))
-      }
+      fetch(`http://localhost:3000/user/${this.user.userId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `bearer ${this.user.token}`,
+          'Content-Type': 'application/json'
+        }
+      }).then(() => {
+        alert('Account Deleted !')
+        localStorage.clear()
+        this.$router.push('/')
+      })
     }
   }
 }
@@ -91,7 +57,7 @@ export default {
     text-decoration: underline;
     margin: 2%;
   }
-  .userForm {
+  .user {
     display: flex;
     flex-flow: column nowrap;
     padding: 1%;
@@ -100,8 +66,15 @@ export default {
     background-color: rgb(255, 215, 215);
     border: solid rgb(240, 10, 10) 2px;
     box-shadow: rgba(240, 10, 10, 0.4) -5px 5px, rgba(240, 10, 10, 0.3) -10px 10px, rgba(240, 10, 10, 0.2) -15px 15px, rgba(240, 10, 10, 0.1) -20px 20px, rgba(240, 10, 10, 0.05) -25px 25px;
-    input{
-      margin: 2% 0%;
+    h3{
+      margin: 2% 33%;
+      border: solid 2px black;
+      border-radius: 15px;
+      width: auto;
+      background-color: white;
+    }
+    h4{
+      margin: 4% 0%;
     }
   }
   button{
@@ -149,7 +122,7 @@ export default {
       text-decoration: underline;
       margin: 4%;
     }
-    .userForm {
+    .user {
       padding: 2%;
       width: 78%;
       margin: 10%;

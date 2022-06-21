@@ -33,7 +33,7 @@ exports.createOnePosts = (req, res) => {
     title: postObject.title,
     content: postObject.content,
     userId: req.auth.userId,
-    imageUr: (req.file)?`${req.protocol}://${req.get('host')}/images/${req.file.filename}`:null
+    imageUrl: (req.file)?`${req.protocol}://${req.get('host')}/images/${req.file.filename}`:null
   })
     .then((posts) => { res.status(200).json(posts); })
     .catch((error) => { res.status(400).json({ error: error }); });

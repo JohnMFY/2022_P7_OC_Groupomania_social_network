@@ -1,7 +1,7 @@
 <template>
   <div class="topPage">
     <div class="profile">
-      <h4>Profil</h4>
+      <h4>Profile</h4>
       <div class="profile_btn">
         <button class="edit option" @click="goProfile"><i class="fa-solid fa-pencil fa-lg"></i></button>
         <button class="logout option" @click="logout"><i class="fa-solid fa-right-from-bracket"></i></button>
@@ -66,7 +66,7 @@ export default {
           title: this.postData.title,
           content: this.postData.content
         }))
-        data.append('image', document.querySelector('#image').files[0])
+        data.append('imageUrl', document.querySelector('#image').files[0])
         fetch('http://localhost:3000/posts', {
           method: 'POST',
           headers: {
