@@ -72,14 +72,22 @@ exports.deleteOnePosts = (req, res, next) => {
       if (posts.userId !== req.auth.userId && !req.auth.admin) {
         res.status(400).json({ error: 'Unauthorized suppression' });
       } else {
-        const filename = posts.imageUrl.split('/images/')[1];
-        fs.unlink(`images/${filename}`, () => {
+        if(posts.imageUrl) {
+          const filename = posts.imageUrl.split('/images/')[1];
+          fs.unlink(`images/${filename}`, () => {
+            Posts.destroy({ where: { id: req.params.id } })
+              .then(() => res.status(200).json({ message: 'Post deleted' }))
+              .catch(error => res.status(400).json({ error }));
+          })
+        }else{
           Posts.destroy({ where: { id: req.params.id } })
-            .then(() => res.status(200).json({ message: 'Post deleted' }))
-            .catch(error => res.status(400).json({ error }));
-        })
+              .then(() => res.status(200).json({ message: 'Post deleted' }))
+              .catch(error => res.status(400).json({ error }));
+        }
       }
     })
-    .catch(error => res.status(500).json({ error }));
+    .catch(error =>{ 
+      res.status(500).json({ error })
+    });
 };
 //////////////////////////////////////////////////

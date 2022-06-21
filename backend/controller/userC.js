@@ -109,7 +109,7 @@ const User = require('../model/userM');
     .then((user) =>{
       
       // SECURITY CHECK //
-      if (user.userId !== req.auth.userId && !req.auth.admin) {
+      if (user.id !== req.auth.userId && !req.auth.admin) {
           res.status(400).json({error: 'Unauthorized suppression'});
         }else{
         User.destroy({ where: {id: req.params.id}})
