@@ -5,7 +5,7 @@
       <h3>{{ post.user.userName }}</h3>
       <div class="post_btn" v-if="user.userId == post.userId || user.admin">
         <button class="edit option" @click="show = !show" v-show="!show"><i class="fa-solid fa-pencil"></i></button>
-        <button class="edit option" v-show="show" @click="editPost(); show = !show"><i class="fa-solid fa-circle-check"></i></button>
+        <button class="edit option" v-show="show" @click="show = !show"><i class="fa-solid fa-rotate-left"></i></button>
         <button class="delete option" @click="deletePost()"><i class="fa-solid fa-xmark fa-lg"></i></button>
       </div>
     </div>
@@ -16,7 +16,7 @@
       <img :src="post.imageUrl" :alt="post.imageUrl" v-if="post.imageUrl">
       <h5>{{ post.updatedAt.toLocaleString() }}</h5>
     </div>
-     <form v-show="show" method="put" class="postForm">
+     <form v-show="show" @submit.prevent="editPost(); show = !show" method="put" class="postForm">
       <div class="postForm_input">
         <label for="title">Edit title:</label>
         <input
@@ -25,7 +25,6 @@
           name="title"
           id="title"
           maxlength="150"
-          required
           placeholder="Enter your title here..."
         />
       </div>
@@ -36,7 +35,6 @@
           name="content"
           id="content"
           maxlength="400"
-          required
           placeholder="Enter your post here..."
         ></textarea>
       </div>
@@ -48,10 +46,13 @@
           accept="image/png, image/jpeg, image/jpg"
         />
       </div>
+      <div class="postForm_input">
+        <button class="edit option"><i class="fa-solid fa-circle-check"></i></button>
+      </div>
     </form>
     <form class="post_commentForm" @submit.prevent="postComment">
       <textarea
-        v-model="comment_content"
+        v-model="commentData.content"
         name="commentForm_input"
         id="comment_input"
         minlength="2"
@@ -114,7 +115,7 @@ export default {
         }))
         data.append('imageUrl', document.querySelector('#image').files[0])
         fetch('http://localhost:3000/posts', {
-          method: 'POST',
+          method: 'PUT',
           headers: {
             Authorization: `bearer ${user.token}`
           },
@@ -145,7 +146,6 @@ export default {
         const data = new FormData()
         data.append('post', JSON.stringify({
           content: this.commentData.content,
-          postId: this.commentData.postId,
           userId: this.user.userId
         }))
         fetch('http://localhost:3000/comment', {
@@ -219,6 +219,26 @@ export default {
         }
         input, #content{
           margin: 2% 0%;
+        }
+        button{
+          display: flex;
+          justify-content: center;
+          width: 33%;
+          margin: 2% 33%;
+          padding: 2%;
+          border: solid #4E5166 2px;
+          border-radius: 5px;
+          font-weight: bolder;
+          box-shadow: rgba(78, 81, 102, 0.4) -4px 4px 4px 4px;
+        }
+        button:hover{
+          box-shadow: rgba(78, 81, 102, 0.6) -2px 2px 2px 2px;
+          border: solid rgb(240, 10, 10) 2px;
+        }
+        button:active{
+          box-shadow: rgba(78, 81, 102, 0.8) 0px 2px 2px;
+          background: lighten(#4E5166, 10%);
+          color: white;
         }
       }
     }
