@@ -104,8 +104,30 @@ export default {
     this.user = JSON.parse(localStorage.getItem('user'))
   },
   methods: {
-    editPost () {
-      console.log('test')
+    editPost (e) {
+      const user = JSON.parse(localStorage.getItem('user'))
+      if (e.currentTarget.reportValidity()) {
+        const data = new FormData()
+        data.append('post', JSON.stringify({
+          title: this.postData.title,
+          content: this.postData.content
+        }))
+        data.append('imageUrl', document.querySelector('#image').files[0])
+        fetch('http://localhost:3000/posts', {
+          method: 'POST',
+          headers: {
+            Authorization: `bearer ${user.token}`
+          },
+          body: data
+        })
+          .then(async (result) => {
+            if (result.ok) {
+              window.location.reload()
+            } else {
+              return Promise.reject(await result.json())
+            }
+          })
+      }
     },
     deletePost (e) {
       fetch(`http://localhost:3000/posts/${this.post.id}`, {

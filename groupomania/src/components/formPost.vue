@@ -15,6 +15,7 @@
           v-model="postData.title"
           name="title"
           id="title"
+          minlength="3"
           maxlength="150"
           required
           placeholder="Enter your title here..."
@@ -26,6 +27,7 @@
           v-model="postData.content"
           name="content"
           id="content"
+          minlength="3"
           maxlength="400"
           required
           placeholder="Enter your post here..."
