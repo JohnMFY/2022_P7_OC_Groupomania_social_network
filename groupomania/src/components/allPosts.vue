@@ -19,11 +19,7 @@ export default {
   data () {
     return {
       posts: [],
-      user: null,
-      commentData: {
-        content: '',
-        postId: null
-      }
+      user: null
     }
   },
   mounted () {
@@ -38,34 +34,6 @@ export default {
       this.posts = await result.json()
       this.posts.forEach(post => { post.updatedAt = new Date(post.updatedAt) })
     }).catch(err => console.log(err.message))
-  },
-  methods: {
-    postComment (e) {
-      const user = JSON.parse(localStorage.getItem('user'))
-      if (e.currentTarget.reportValidity()) {
-        const data = new FormData()
-        data.append('post', JSON.stringify({
-          title: this.commentData.content,
-          content: this.commentData.postId
-        }))
-        fetch('http://localhost:3000/comment', {
-          method: 'POST',
-          headers: {
-            Authorization: `bearer ${user.token}`
-          },
-          body: data
-        })
-          .then((result) => {
-            if (result.ok) {
-              alert('OK')
-              // eslint-disable-next-line
-              //window.location.reload()
-            } else {
-              return Promise.reject(result.json())
-            }
-          })
-      }
-    }
   }
 }
 </script>

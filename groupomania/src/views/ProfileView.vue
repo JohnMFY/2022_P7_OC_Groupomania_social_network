@@ -1,16 +1,16 @@
 <template>
   <div>
-    <formProfile/>
+    <userProfile/>
   </div>
 </template>
 
 <script>
 
-import formProfile from '@/components/formProfile.vue'
+import userProfile from '@/components/userProfile.vue'
 export default {
   name: 'ProfileView',
   components: {
-    formProfile
+    userProfile
   }
 }
 </script>
