@@ -16,7 +16,7 @@
       <img :src="post.imageUrl" :alt="post.imageUrl" v-if="post.imageUrl">
       <h5>{{ post.updatedAt.toLocaleString() }}</h5>
     </div>
-     <form v-show="show" @submit.prevent="editPost(); show = !show" method="put" class="postForm">
+     <form id="edit" v-show="show" @submit.prevent="editPost() ; show = !show" method="put" class="postForm">
       <div class="postForm_input">
         <label for="title">Edit title:</label>
         <input
@@ -87,9 +87,9 @@ export default {
     return {
       show: false,
       postData: {
-        title: '',
-        content: '',
-        imageUrl: ''
+        title: this.post.title,
+        content: this.post.content,
+        imageUrl: null
       },
       user: {
         userId: null,
@@ -105,19 +105,20 @@ export default {
     this.user = JSON.parse(localStorage.getItem('user'))
   },
   methods: {
-    editPost (e) {
-      const user = JSON.parse(localStorage.getItem('user'))
-      if (e.currentTarget.reportValidity()) {
+    editPost () {
+      if (document.querySelector('#edit').reportValidity()) {
         const data = new FormData()
         data.append('post', JSON.stringify({
           title: this.postData.title,
           content: this.postData.content
         }))
-        data.append('imageUrl', document.querySelector('#image').files[0])
-        fetch('http://localhost:3000/posts', {
+        if (document.querySelector('#image').files.length > 0) {
+          data.append('imageUrl', document.querySelector('#image').files[0])
+        }
+        fetch(`http://localhost:3000/posts/${this.post.id}`, {
           method: 'PUT',
           headers: {
-            Authorization: `bearer ${user.token}`
+            Authorization: `bearer ${this.user.token}`
           },
           body: data
         })
@@ -143,17 +144,16 @@ export default {
     },
     postComment (e) {
       if (e.currentTarget.reportValidity()) {
-        const data = new FormData()
-        data.append('post', JSON.stringify({
-          content: this.commentData.content,
-          userId: this.user.userId
-        }))
         fetch('http://localhost:3000/comment', {
           method: 'POST',
           headers: {
-            Authorization: `bearer ${this.user.token}`
+            Authorization: `bearer ${this.user.token}`,
+            'Content-Type': 'application/json'
           },
-          body: data
+          body: JSON.stringify({
+            content: this.commentData.content,
+            postId: this.post.id
+          })
         })
           .then(async (result) => {
             if (result.ok) {

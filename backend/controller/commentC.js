@@ -19,7 +19,6 @@ const Comment = require('../model/commentM');
 //////////////// CREATE COMMENT //////////////////
     exports.createOneComment = (req, res) => {
         Comment.create({
-            id: req.body.id,
             content: req.body.content,
             postId: req.body.postId,
             userId: req.auth.userId
