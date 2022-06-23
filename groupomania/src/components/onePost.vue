@@ -157,10 +157,7 @@ export default {
         })
           .then(async (result) => {
             if (result.ok) {
-              alert('OK')
-              return result.json()
-              // eslint-disable-next-line
-              //window.location.reload()
+              window.location.reload()
             } else {
               return Promise.reject(await result.json())
             }
